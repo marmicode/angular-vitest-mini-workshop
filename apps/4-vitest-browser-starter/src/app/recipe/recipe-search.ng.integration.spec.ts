@@ -23,6 +23,16 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNames()).toEqual(['Burger']);
   });
 
+  it('resets filters when clicking on the reset button', async () => {
+    const { getRecipeNames, setKeywords, clickReset } = await renderComponent();
+
+    await setKeywords('Burg');
+
+    await clickReset();
+
+    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
+  });
+
   async function renderComponent() {
     TestBed.configureTestingModule({
       providers: [provideRecipeRepositoryFake()],
@@ -43,6 +53,9 @@ describe(RecipeSearch.name, () => {
       },
       async setKeywords(keywords: string) {
         await userEvent.type(screen.getByLabelText('Keywords'), keywords);
+      },
+      async clickReset() {
+        await userEvent.click(screen.getByRole('button', { name: 'RESET' }));
       },
     };
   }

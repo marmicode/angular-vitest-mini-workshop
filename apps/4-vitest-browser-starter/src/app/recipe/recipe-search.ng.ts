@@ -16,12 +16,15 @@ import { RecipeFilter } from './recipe-filter.ng';
 import { RecipePreview } from './recipe-preview.ng';
 import { RecipeRepository } from './recipe-repository';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { AdBanner } from '../ad/ad-banner.ng';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'wm-recipe-search',
-  imports: [Catalog, RecipeFilter, RecipePreview, MatProgressSpinner],
+  imports: [Catalog, RecipeFilter, RecipePreview, MatProgressSpinner, AdBanner],
+
   template: `
+    <wm-ad-banner />
     <wm-recipe-filter (filterChange)="filter.set($event)"></wm-recipe-filter>
     <wm-catalog>
       @if (recipes.isLoading()) {

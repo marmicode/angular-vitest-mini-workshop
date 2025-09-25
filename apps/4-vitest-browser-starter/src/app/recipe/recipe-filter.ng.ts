@@ -5,11 +5,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { map } from 'rxjs/operators';
 import { createRecipeFilterCriteria } from './recipe-filter-criteria';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'wm-recipe-filter',
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+  ],
   template: `
     <form [formGroup]="filterFormGroup">
       <mat-form-field>
@@ -26,6 +32,8 @@ import { createRecipeFilterCriteria } from './recipe-filter-criteria';
         <mat-label>Max Steps</mat-label>
         <input formControlName="maxStepCount" matInput type="number" />
       </mat-form-field>
+
+      <button mat-button type="reset">RESET</button>
     </form>
   `,
   styles: [
