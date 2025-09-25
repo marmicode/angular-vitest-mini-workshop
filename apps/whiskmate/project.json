@@ -10,17 +10,19 @@
       "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/whiskmate",
-        "browser": "apps/whiskmate/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/whiskmate/tsconfig.app.json",
+        "outputPath": "dist/{projectRoot}",
+        "browser": "{projectRoot}/src/main.ts",
+        "tsConfig": "{projectRoot}/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/whiskmate/public"
+            "input": "{projectRoot}/public"
           }
         ],
-        "styles": ["apps/whiskmate/src/styles.css"]
+        "styles": [
+          "{projectRoot}/src/custom-theme.scss",
+          "{projectRoot}/src/styles.css"
+        ]
       },
       "configurations": {
         "production": {
@@ -51,10 +53,10 @@
       "executor": "@angular/build:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "whiskmate:build:production"
+          "buildTarget": ":build:production"
         },
         "development": {
-          "buildTarget": "whiskmate:build:development"
+          "buildTarget": ":build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -62,26 +64,16 @@
     "extract-i18n": {
       "executor": "@angular/build:extract-i18n",
       "options": {
-        "buildTarget": "whiskmate:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
-      "options": {
-        "reportsDirectory": "../../coverage/apps/whiskmate"
+        "buildTarget": ":build"
       }
     },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "whiskmate:build",
+        "buildTarget": ":build",
         "port": 4200,
-        "staticFilePath": "dist/apps/whiskmate/browser",
+        "staticFilePath": "dist/{projectRoot}/browser",
         "spa": true
       }
     }

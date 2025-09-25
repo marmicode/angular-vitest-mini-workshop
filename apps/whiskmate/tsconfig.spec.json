@@ -12,10 +12,11 @@
   },
   "include": [
     "vite.config.ts",
-    "vite.config.mts",
+    "vite.config.ts",
     "vitest.config.ts",
-    "vitest.config.mts",
+    "vitest.config.ts",
     "src/**/*.test.ts",
+    "src/**/*.contract.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.tsx",
     "src/**/*.spec.tsx",
