@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "cascade-changes": "node --experimental-strip-types tools/cascade-changes.ts",
+    "clone-app": "tools/clone-app.sh",
+    "clone-changes": "tools/clone-changes.sh",
     "postinstall": "pnpm exec playwright install --with-deps"
   },
   "private": true,

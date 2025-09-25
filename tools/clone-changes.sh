@@ -17,4 +17,4 @@ git diff HEAD "apps/$SOURCE" > "$PATCH_FILE"
 
 sed -i '' "s/$SOURCE/$DESTINATION/g" "$PATCH_FILE"
 
-git apply -3 "$PATCH_FILE"
+git apply -3 --allow-empty "$PATCH_FILE"
