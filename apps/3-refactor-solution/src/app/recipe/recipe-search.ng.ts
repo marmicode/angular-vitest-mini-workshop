@@ -1,21 +1,16 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   inject,
-  OnInit,
   signal,
 } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { Suspense, suspensify } from '@jscutlery/operators';
-import { BehaviorSubject, switchMap } from 'rxjs';
 import { Catalog } from '../shared/catalog.ng';
-import { Recipe } from './recipe';
 import { RecipeFilterCriteria } from './recipe-filter-criteria';
 import { RecipeFilter } from './recipe-filter.ng';
 import { RecipePreview } from './recipe-preview.ng';
 import { RecipeRepository } from './recipe-repository';
-import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
