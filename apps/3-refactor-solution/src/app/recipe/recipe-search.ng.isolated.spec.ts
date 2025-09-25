@@ -1,9 +1,12 @@
+import { ResourceRef, WritableSignal } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { whenAppStable } from '../../testing/when-app-stable';
+import { Recipe } from './recipe';
+import { RecipeFilterCriteria } from './recipe-filter-criteria';
 import {
   provideRecipeRepositoryFake,
   RecipeRepositoryFake,
 } from './recipe-repository.fake';
-import { TestBed } from '@angular/core/testing';
-import { whenAppStable } from '../../testing/when-app-stable';
 import { RecipeSearch } from './recipe-search.ng';
 import { recipeMother } from './recipe.mother';
 
@@ -32,19 +35,24 @@ describe(RecipeSearch.name, () => {
       recipeMother.withBasicInfo('Salad').build(),
     ]);
 
-    const component = TestBed.inject(RecipeSearch);
-
-    component.ngOnInit();
+    /*
+     * DO NOT DO THIS AT HOME.
+     * This illustrates the drawbacks of "over-narrow" / "over-specifying" tests.
+     */
+    const component = TestBed.inject(RecipeSearch) as unknown as {
+      filter: WritableSignal<RecipeFilterCriteria>;
+      recipes: ResourceRef<Recipe[]>;
+    };
 
     return {
       async getRecipeNames() {
         await whenAppStable();
-        return component.recipes?.hasValue
-          ? component.recipes.value.map((recipe) => recipe.name)
+        return component.recipes.hasValue()
+          ? component.recipes.value().map((recipe) => recipe.name)
           : null;
       },
       setKeywords(keywords: string) {
-        component.filter$.next({ keywords });
+        component.filter.set({ keywords });
       },
     };
   }
