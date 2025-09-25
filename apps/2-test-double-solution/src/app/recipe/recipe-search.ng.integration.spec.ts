@@ -9,7 +9,7 @@ import {
 import { recipeMother } from './recipe.mother';
 
 describe(RecipeSearch.name, () => {
-  it('should search recipes without filtering', async () => {
+  it('searches recipes without filtering', async () => {
     const { getRecipeNames } = await renderComponent();
 
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);

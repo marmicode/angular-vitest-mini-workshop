@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
-  it.todo('🚧 should search recipes without filtering');
+  it.todo('🚧 searches recipes without filtering');
 
   function createComponent() {
     TestBed.configureTestingModule({
