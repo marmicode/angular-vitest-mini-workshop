@@ -13,7 +13,7 @@ PATCH_FILE="tmp/changes.diff"
 
 mkdir -p tmp
 
-git diff "apps/$SOURCE" > "$PATCH_FILE"
+git diff HEAD "apps/$SOURCE" > "$PATCH_FILE"
 
 sed -i '' "s/$SOURCE/$DESTINATION/g" "$PATCH_FILE"
 
