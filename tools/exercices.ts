@@ -1,21 +1,21 @@
 export const exercises: Exercise[] = [
   {
     id: '1-recipe-search',
-    name: 'Recipe Search',
+    name: '1. Recipe Search',
     implementationFiles: ['src/app/recipe/recipe-search.ng.ts'],
   },
   {
     id: '2-test-double',
-    name: 'Test Double',
+    name: '2. Test Double',
   },
   {
     id: '3-refactor',
-    name: 'Refactor',
+    name: '3. Refactor',
     implementationFiles: ['src/app/recipe/recipe-search.ng.ts'],
   },
   {
     id: '4-vitest-browser',
-    name: 'Vitest Browser',
+    name: '4. Vitest Browser',
   },
 ];
 
@@ -23,5 +23,4 @@ export interface Exercise {
   id: string;
   name: string;
   implementationFiles?: string[];
-  flavors?: string[];
 }
