@@ -28,10 +28,14 @@ export async function main(ctx: Context) {
         name: 'start',
         message: 'Start a new exercise',
       },
-      {
-        name: 'checkout-impl',
-        message: 'My test is ready, checkout the implementation',
-      },
+      ...(exercise.implementationFiles
+        ? [
+            {
+              name: 'checkout-impl',
+              message: 'My test is ready, checkout the implementation',
+            } as const,
+          ]
+        : []),
       {
         name: 'solution',
         message: 'Go to solution',
