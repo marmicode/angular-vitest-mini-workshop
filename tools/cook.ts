@@ -30,11 +30,11 @@ export async function main(ctx: Context) {
       },
       {
         name: 'checkout-impl',
-        message: 'Checkout the implementation',
+        message: 'My test is ready, checkout the implementation',
       },
       {
         name: 'solution',
-        message: 'Checkout the solution',
+        message: 'Go to solution',
       },
     ] satisfies Array<{ name: Command; message: string }>,
   });
