@@ -1,12 +1,13 @@
 import enquirer from 'enquirer';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+import { main } from './main';
 import {
   CommandRunner,
   FileSystemAdapter,
   GitAdapter,
-  main,
   PromptAdapter,
-} from './cook';
+} from './infra';
+import { Exercise } from './core';
 
 describe('cook', () => {
   it('does not checkout the implementation if TDD is enabled', async () => {
@@ -23,16 +24,19 @@ describe('cook', () => {
 
     expect(executedCommands).toEqual([
       'git switch angular-vitest-mini-workshop',
-      'git branch -D cooking || true',
+      'git branch -D cooking || exit 0',
       'git switch -c cooking',
-      'pnpm nx format --files nx.json',
       'git add .',
       'git commit -m "feat: ✨ focus on 1-recipe-search-starter"',
     ]);
     expect(files).toEqual({
-      'nx.json': JSON.stringify({
-        defaultProject: '1-recipe-search-starter',
-      }),
+      'nx.json': JSON.stringify(
+        {
+          defaultProject: '1-recipe-search-starter',
+        },
+        null,
+        2,
+      ),
       'apps/1-recipe-search-starter/some-file.txt': '',
     });
   });
@@ -45,10 +49,9 @@ describe('cook', () => {
 
     expect(executedCommands).toEqual([
       'git switch angular-vitest-mini-workshop',
-      'git branch -D cooking || true',
+      'git branch -D cooking || exit 0',
       'git switch -c cooking',
       'git show angular-vitest-mini-workshop:apps/1-recipe-search-solution/src/app/recipe/recipe-search.ng.ts > apps/1-recipe-search-starter/src/app/recipe/recipe-search.ng.ts',
-      'pnpm nx format --files nx.json',
       'git add .',
       'git commit -m "feat: ✨ focus on 1-recipe-search-starter"',
     ]);
@@ -64,9 +67,8 @@ describe('cook', () => {
 
     expect(executedCommands).toEqual([
       'git switch angular-vitest-mini-workshop',
-      'git branch -D cooking || true',
+      'git branch -D cooking || exit 0',
       'git switch -c cooking',
-      'pnpm nx format --files nx.json',
       'git add .',
       'git commit -m "feat: ✨ focus on 1-recipe-search-solution"',
     ]);
@@ -98,13 +100,20 @@ async function runMain({
   });
   promptAdapter.configure({ choices });
 
-  // Override executeGitCommand to capture commands
-  gitAdapter.executeGitCommand = (command: string) => {
-    commandRunner.executeCommand(`git ${command}`);
-  };
+  const exercises: Exercise[] = [
+    {
+      id: '1-recipe-search',
+      name: 'Recipe Search',
+      implementationFiles: ['src/app/recipe/recipe-search.ng.ts'],
+    },
+    { id: '2-test-double', name: 'Test Double' },
+  ];
 
-  await main({
-    base: 'angular-vitest-mini-workshop',
+  await main([], {
+    config: {
+      base: 'angular-vitest-mini-workshop',
+      exercises,
+    },
     commandRunner,
     fileSystemAdapter,
     gitAdapter,
@@ -120,7 +129,10 @@ async function runMain({
 class CommandRunnerFake implements CommandRunner {
   private _executedCommands: string[] = [];
 
-  executeCommand(command: string) {
+  executeCommand(
+    command: string,
+    { env }: { env?: Record<string, string> } = {},
+  ) {
     this._executedCommands.push(command);
   }
 
@@ -150,10 +162,6 @@ class GitFake implements GitAdapter {
 
   getCurrentBranch() {
     return this._currentBranch;
-  }
-
-  executeGitCommand(command: string) {
-    // This will be handled by CommandRunnerFake
   }
 }
 
