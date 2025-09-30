@@ -15,7 +15,7 @@ sidebar_label: 1 - Recipe Search Testing
 Navigate to the first exercise:
 
 ```sh
-pnpm cook 1-recipe-search
+pnpm cook start 1-recipe-search
 ```
 
 ## 🎯 Goal #1: Implement Recipe Search "integration" test
@@ -24,15 +24,15 @@ The `RecipeSearch` component should display a list of recipes fetched from a rem
 
 ### 📝 Steps
 
-1. Run tests:
+#### 1. Run tests:
 
 ```sh
 pnpm test
 ```
 
-2. Implement tests at `src/app/recipe/recipe-search.ng.spec.ts`: Query DOM and check names are displayed.
+#### 2. Implement tests at `src/app/recipe/recipe-search.ng.spec.ts`: Query DOM and check names are displayed.
 
-3. Checkout the implementation if you went with the TDD approach:
+#### 3. Checkout the implementation if you went with the TDD approach:
 
 ```sh
 pnpm cook checkout-impl
@@ -49,15 +49,15 @@ The `RecipeSearch` component should display a list of recipes fetched from a rem
 
 ### 📝 Steps
 
-1. Run tests:
+#### 1. Run tests:
 
 ```sh
 pnpm test
 ```
 
-2. Implement tests: Check that the `recipes` property is set correctly when the component is initialized.
+#### 2. Implement tests: Check that the `recipes` property is set correctly when the component is initialized.
 
-3. Checkout the implementation if you went with the TDD approach:
+#### 3. Checkout the implementation if you went with the TDD approach:
 
 ```sh
 pnpm cook checkout-impl
