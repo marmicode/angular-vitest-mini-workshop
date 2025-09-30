@@ -126,6 +126,7 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} Marmicode.`,
     },
     prism: {
+      additionalLanguages: ['diff'],
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
