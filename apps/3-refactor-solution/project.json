@@ -76,6 +76,16 @@
         "staticFilePath": "dist/{projectRoot}/browser",
         "spa": true
       }
+    },
+    "test": {
+      "configurations": {
+        "debug": {
+          "args": "--watch",
+          "env": {
+            "DEBUG_BROWSER": "true"
+          }
+        }
+      }
     }
   }
 }
