@@ -1,7 +1,7 @@
 ## Context
 
 - This is an Angular testing workshop repository.
-- Each exercise is in the `apps/<number>-<exercise-name>-starter` folder on `angular-vitest-mini-workshop` branch.
+- Each exercise is in the `apps/<number>-<exercise-name>-starter` folder on `main` branch.
 - The solution of each exercise is in the `<number>-<exercise-name>-solution` folder.
 - Exercise instructions are in `docs/instructions`.
 

@@ -35,9 +35,9 @@ volta install pnpm
 ## 📥 Retrieve source code and install dependencies
 
 ```sh
-git clone https://github.com/marmicode/workshops.git --branch angular-vitest-mini-workshop
+git clone https://github.com/marmicode/angular-vitest-mini-workshop.git
 
-cd whiskmate
+cd angular-vitest-main-workshop
 
 pnpm install
 ```

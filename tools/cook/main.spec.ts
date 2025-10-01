@@ -23,7 +23,7 @@ describe('cook', () => {
     });
 
     expect(executedCommands).toEqual([
-      'git switch angular-vitest-mini-workshop',
+      'git switch main',
       'git branch -D cooking || exit 0',
       'git switch -c cooking',
       'git add .',
@@ -48,10 +48,10 @@ describe('cook', () => {
     });
 
     expect(executedCommands).toEqual([
-      'git switch angular-vitest-mini-workshop',
+      'git switch main',
       'git branch -D cooking || exit 0',
       'git switch -c cooking',
-      'git show angular-vitest-mini-workshop:apps/1-recipe-search-solution/src/app/recipe/recipe-search.ng.ts > apps/1-recipe-search-starter/src/app/recipe/recipe-search.ng.ts',
+      'git show main:apps/1-recipe-search-solution/src/app/recipe/recipe-search.ng.ts > apps/1-recipe-search-starter/src/app/recipe/recipe-search.ng.ts',
       'git add .',
       'git commit -m "feat: ✨ focus on 1-recipe-search-starter"',
     ]);
@@ -66,7 +66,7 @@ describe('cook', () => {
     });
 
     expect(executedCommands).toEqual([
-      'git switch angular-vitest-mini-workshop',
+      'git switch main',
       'git branch -D cooking || exit 0',
       'git switch -c cooking',
       'git add .',
@@ -111,7 +111,7 @@ async function runMain({
 
   await main([], {
     config: {
-      base: 'angular-vitest-mini-workshop',
+      base: 'main',
       exercises,
     },
     commandRunner,

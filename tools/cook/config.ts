@@ -26,6 +26,6 @@ const exercises: Exercise[] = [
 ];
 
 export const config: Config = {
-  base: 'angular-vitest-mini-workshop',
+  base: 'main',
   exercises,
 };
