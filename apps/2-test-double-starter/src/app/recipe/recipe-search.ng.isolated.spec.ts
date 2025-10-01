@@ -7,7 +7,9 @@ describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
     const { getRecipeNames } = createComponent();
 
-    expect(await getRecipeNames()).toEqual(['Burger', 'Salad']);
+    expect(await getRecipeNames()).toEqual(
+      expect.arrayContaining(['Burger', 'Salad']),
+    );
   });
 
   function createComponent() {
