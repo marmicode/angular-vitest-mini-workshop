@@ -39,7 +39,7 @@ TestBed.inject(RecipeRepositoryFake).setRecipes(...);
 pnpm test
 ```
 
-## 🍴 Cutleries
+## 📖 Appendices
 
 ### Object Mother
 
@@ -48,14 +48,6 @@ import { recipeMother } from './recipe.mother';
 
 const burger = recipeMother.withBasicInfo('Burger').build();
 const salad = recipeMother.withBasicInfo('Salad').build();
-```
-
-### Query headings with Testing Library
-
-```ts
-import { screen } from '@testing-library/dom';
-
-screen.queryAllByRole('heading').map((el) => el.textContent);
 ```
 
 ### Set keywords with Testing Library

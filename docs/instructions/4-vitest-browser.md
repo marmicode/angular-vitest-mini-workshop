@@ -34,7 +34,7 @@ import { page } from '@vitest/browser/context';
 await page.getByLabelText('Keywords').fill(keywords);
 ```
 
-## 🍴 Cutleries
+## 📖 Appendices
 
 ### Visual Debugging
 

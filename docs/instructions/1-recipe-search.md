@@ -62,3 +62,21 @@ pnpm test
 ```sh
 pnpm cook checkout-impl
 ```
+
+## 📖 Appendices
+
+### Query headings with Testing Library
+
+```ts
+import { screen } from '@testing-library/dom';
+
+/* Query all h2 (or similar) headings. */
+const headingEls = screen.getAllByRole('heading', { level: 2 });
+```
+
+### Assert elements have text content
+
+```ts
+expect(els[0]).toHaveTextContent('AAA');
+expect(els[1]).toHaveTextContent('BBB');
+```
