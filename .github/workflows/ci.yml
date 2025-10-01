@@ -39,7 +39,7 @@ jobs:
 
   deploy-gh-pages:
     name: 🚀 Deploy to GitHub Pages
-    if: github.ref == 'refs/heads/angular-vitest-mini-workshop'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-22.04
     needs:
       - main
