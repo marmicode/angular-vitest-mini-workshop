@@ -28,4 +28,4 @@
 
 ## Other Instructions
 
-- To compare with other branches, use git locally or if needed, fallback to visiting the repository at [https://github.com/marmicode/workshops](https://github.com/marmicode/workshops)
+- To compare with other branches, use git locally or if needed, fallback to visiting the repository at [https://github.com/marmicode/angular-vitest-mini-workshop](https://github.com/marmicode/angular-vitest-mini-workshop)
