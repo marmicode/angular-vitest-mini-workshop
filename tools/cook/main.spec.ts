@@ -23,7 +23,7 @@ describe('cook', () => {
     });
 
     expect(executedCommands).toEqual([
-      'git switch main',
+      'git switch angular-vitest-mini-workshop',
       'git branch -D cooking || exit 0',
       'git switch -c cooking',
       'git add .',
@@ -48,10 +48,10 @@ describe('cook', () => {
     });
 
     expect(executedCommands).toEqual([
-      'git switch main',
+      'git switch angular-vitest-mini-workshop',
       'git branch -D cooking || exit 0',
       'git switch -c cooking',
-      'git show main:apps/1-recipe-search-solution/src/app/recipe/recipe-search.ng.ts > apps/1-recipe-search-starter/src/app/recipe/recipe-search.ng.ts',
+      'git show angular-vitest-mini-workshop:apps/1-recipe-search-solution/src/app/recipe/recipe-search.ng.ts > apps/1-recipe-search-starter/src/app/recipe/recipe-search.ng.ts',
       'git add .',
       'git commit -m "feat: ✨ focus on 1-recipe-search-starter"',
     ]);
@@ -66,7 +66,7 @@ describe('cook', () => {
     });
 
     expect(executedCommands).toEqual([
-      'git switch main',
+      'git switch angular-vitest-mini-workshop',
       'git branch -D cooking || exit 0',
       'git switch -c cooking',
       'git add .',
@@ -76,14 +76,31 @@ describe('cook', () => {
       defaultProject: '1-recipe-search-solution',
     });
   });
+
+  it('stops cooking', async () => {
+    const { executedCommands } = await runMain({
+      choices: { command: 'stop' },
+      hasLocalChanges: true,
+      nxJsonContent: {
+        defaultProject: '1-recipe-search-starter',
+      },
+    });
+    expect(executedCommands).toEqual([
+      'git reset --hard',
+      'git clean -df',
+      'git switch angular-vitest-mini-workshop',
+    ]);
+  });
 });
 
 async function runMain({
   choices,
+  hasLocalChanges,
   nxJsonContent,
   files = {},
 }: {
   choices: Record<string, unknown>;
+  hasLocalChanges: boolean;
   nxJsonContent: { defaultProject?: string };
   files?: Record<string, string>;
 }) {
@@ -98,6 +115,9 @@ async function runMain({
       'nx.json': JSON.stringify(nxJsonContent),
     },
   });
+  gitAdapter.configure({
+    hasLocalChanges,
+  });
   promptAdapter.configure({ choices });
 
   const exercises: Exercise[] = [
@@ -111,7 +131,7 @@ async function runMain({
 
   await main([], {
     config: {
-      base: 'main',
+      base: 'angular-vitest-mini-workshop',
       exercises,
     },
     commandRunner,
