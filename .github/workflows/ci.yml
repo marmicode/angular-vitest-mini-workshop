@@ -63,7 +63,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-22.04
     needs:
-      - main
+      - test
       - testronaut
     environment:
       name: github-pages
