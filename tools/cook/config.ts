@@ -23,6 +23,10 @@ const exercises: Exercise[] = [
     id: '4-vitest-browser',
     name: '4. Vitest Browser',
   },
+  {
+    id: '5-testronaut',
+    name: '5. Testronaut',
+  },
 ];
 
 export const config: Config = {
