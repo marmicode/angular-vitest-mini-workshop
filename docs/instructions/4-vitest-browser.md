@@ -12,7 +12,7 @@ Navigate to the fourth exercise:
 pnpm cook start 4-vitest-browser
 ```
 
-## 🎯 Goal: Implement Real Browser Testing with Vitest
+## 🎯 Goal: Test `RecipeSearch` with Vitest Browser Mode
 
 In this exercise, you'll learn to use Vitest's browser mode for testing components in a real browser environment using Playwright integration.
 
