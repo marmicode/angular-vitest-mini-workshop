@@ -8,7 +8,8 @@
     "postinstall": "pnpm exec playwright install --with-deps",
     "test": "nx test --watch",
     "test:debug": "nx test --configuration=debug",
-    "testronaut": "nx testronaut"
+    "testronaut": "nx testronaut",
+    "verify": "nx run-many -t test,testronaut --parallel=1 --pass-with-no-tests"
   },
   "private": true,
   "dependencies": {
