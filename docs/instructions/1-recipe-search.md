@@ -40,7 +40,7 @@ it('...', async () => {
 })
 ```
 
-#### 4. Query DOM and check names are displayed
+#### 4. Query DOM and check that a burger and a pizza are displayed
 
 Cf. [📖 Appendices](#-appendices)
 
@@ -64,7 +64,10 @@ pnpm test
 
 #### 2. Implement tests
 
-Check that the `recipes` property is set correctly when the component is initialized.
+Wait for the `recipes` property to contain a burger and a pizza.
+
+Cf. [📖 Appendices](#-appendices)
+
 
 #### 3. Checkout the implementation if you went with the TDD approach:
 
@@ -92,4 +95,10 @@ const headingEls = screen.getAllByRole('heading', { level: 2 });
 ```ts
 expect(els[0]).toHaveTextContent('AAA');
 expect(els[1]).toHaveTextContent('BBB');
+```
+
+### Wait for an assertion to pass with a polling strategy
+
+```ts
+await expect.poll(() => getSomething()).toBe(42);
 ```
