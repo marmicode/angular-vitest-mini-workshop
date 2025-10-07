@@ -5,23 +5,24 @@ import {
 } from './recipe-repository.fake';
 import { RecipeSearch } from './recipe-search.ng';
 import { recipeMother } from './recipe.mother';
+import { whenAppStable } from '../../testing/when-app-stable';
 
 describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
-    const { getRecipeNames } = createComponent();
+    const { getRecipeNames } = await createComponent();
 
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
   it('filters recipes', async () => {
-    const { getRecipeNames, setKeywords } = createComponent();
+    const { getRecipeNames, setKeywords } = await createComponent();
 
     setKeywords('Burg');
 
     expect(getRecipeNames()).toEqual(['Burger']);
   });
 
-  function createComponent() {
+  async function createComponent() {
     TestBed.configureTestingModule({
       providers: [RecipeSearch, provideRecipeRepositoryFake()],
     });
@@ -34,6 +35,8 @@ describe(RecipeSearch.name, () => {
     const component = TestBed.inject(RecipeSearch);
 
     component.ngOnInit();
+
+    await whenAppStable();
 
     return {
       getRecipeNames() {
