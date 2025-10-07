@@ -1,6 +1,6 @@
 import '@angular/compiler';
 import { defineConfig, devices } from '@playwright/test';
-import { withTestronautAngular } from '@testronaut/angular';
+import { withTestronautAngular as originalWithTestronautAngular } from '@testronaut/angular';
 import { dirname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -42,3 +42,25 @@ export default defineConfig(
     ],
   },
 );
+
+/**
+ * This is a workaround to allow the test server to be reused when running
+ * multiple Playwright instances.
+ *
+ * The next Testronaut version will automatically pick an available port instead.
+ * Cf. https://github.com/testronaut/testronaut/pull/70
+ */
+function withTestronautAngular(
+  ...args: Parameters<typeof originalWithTestronautAngular>
+) {
+  const config = originalWithTestronautAngular(...args);
+  return {
+    ...config,
+    webServer: config.webServer
+      ? {
+          ...config.webServer,
+          reuseExistingServer: true,
+        }
+      : undefined,
+  };
+}
