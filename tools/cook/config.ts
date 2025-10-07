@@ -1,6 +1,7 @@
 import { type Config, type Exercise } from './core.ts';
 
 const files = {
+  recipeFilter: 'src/app/recipe/recipe-filter.ng.ts',
   recipeSearch: 'src/app/recipe/recipe-search.ng.ts',
 };
 
@@ -13,6 +14,7 @@ const exercises: Exercise[] = [
   {
     id: '2-test-double',
     name: '2. Test Double',
+    implementationFiles: [files.recipeFilter, files.recipeSearch],
   },
   {
     id: '3-refactor',
