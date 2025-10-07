@@ -22,7 +22,7 @@ pnpm cook start 5-testronaut
 pnpm testronaut --ui # Or use VSCode Playwright extension
 ```
 
-#### 2. Mount the component
+#### 2. Mount the component in `src/app/recipe/recipe-filter.pw.ts`
 
 ```ts
 const { outputs } = await mount(RecipeFilter);
@@ -46,7 +46,7 @@ expect(outputs.filterCriteria.calls[0]).toEqual('Burger');
 pnpm testronaut --ui # Or use VSCode Playwright extension
 ```
 
-#### 2. Configure the `RecipeRepositoryFake`
+#### 2. Configure the `RecipeRepositoryFake` in `src/app/recipe/recipe-search.pw.ts`
 
 ```ts
 await runInBrowser('set up the recipe repository', async () => {
