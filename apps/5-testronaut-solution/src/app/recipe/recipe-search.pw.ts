@@ -20,7 +20,7 @@ test('recipe search', async ({ page, mount, runInBrowser }) => {
   });
 
   await mount(RecipeSearch);
-  await page.getByText('Keywords').click();
+
   await page.getByRole('textbox', { name: 'Keywords' }).fill('Bur');
   await expect(page.getByRole('heading')).toHaveText(['Burger']);
 });
