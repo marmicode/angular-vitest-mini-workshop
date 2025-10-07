@@ -10,33 +10,32 @@ import { recipeMother } from './recipe.mother';
 
 describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
-    const { getRecipeNameEls } = await renderComponent();
+    const { getRecipeNames } = await renderComponent();
 
-    const els = getRecipeNameEls();
+    const els = getRecipeNames();
     expect.soft(els).toHaveLength(2);
     expect.soft(els[0]).toHaveTextContent('Burger');
     expect.soft(els[1]).toHaveTextContent('Salad');
   });
 
   it('filters recipes by keywords', async () => {
-    const { getRecipeNameEls, setKeywords } = await renderComponent();
+    const { getRecipeNames, setKeywords } = await renderComponent();
 
     await setKeywords('Burg');
 
-    const els = getRecipeNameEls();
+    const els = getRecipeNames();
     expect.soft(els).toHaveLength(1);
     expect.soft(els[0]).toHaveTextContent('Burger');
   });
 
   it('resets filters when clicking on the reset button', async () => {
-    const { getRecipeNameEls, setKeywords, clickReset } =
-      await renderComponent();
+    const { getRecipeNames, setKeywords, clickReset } = await renderComponent();
 
     await setKeywords('Burg');
 
     await clickReset();
 
-    const els = getRecipeNameEls();
+    const els = getRecipeNames();
     expect.soft(els).toHaveLength(2);
     expect.soft(els[0]).toHaveTextContent('Burger');
     expect.soft(els[1]).toHaveTextContent('Salad');
@@ -57,7 +56,7 @@ describe(RecipeSearch.name, () => {
     await fixture.whenStable();
 
     return {
-      getRecipeNameEls() {
+      getRecipeNames() {
         return screen.queryAllByRole('heading');
       },
       async setKeywords(keywords: string) {
