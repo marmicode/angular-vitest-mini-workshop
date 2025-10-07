@@ -16,17 +16,13 @@ async function main(args: string[]) {
     .flat();
 
   const startIndex = projects.indexOf(startProject);
-  const filteredProjects = projects.slice(startIndex);
+  if (startIndex === -1) {
+    console.error(`Project ${startProject} not found`);
+    process.exit(1);
+  }
 
-  const pairwisedProjects = filteredProjects.reduce(
-    (acc, project, index) => {
-      if (index > 0) {
-        acc.push([projects[index - 1], project]);
-      }
-      return acc;
-    },
-    [] as [string, string][],
-  );
+  const filteredProjects = projects.slice(startIndex);
+  const pairwisedProjects = pairwise(filteredProjects);
 
   for (const [source, destination] of pairwisedProjects) {
     execSync(`pnpm nx run tools:clone-changes ${source} ${destination}`, {
@@ -40,6 +36,18 @@ function computeExerciseProjects(exerciseId: string) {
     starter: `${exerciseId}-starter`,
     solution: `${exerciseId}-solution`,
   };
+}
+
+function pairwise<T>(list: Array<T>): Array<[T, T]> {
+  return list.reduce(
+    (acc, project, index) => {
+      if (index > 0) {
+        acc.push([list[index - 1], project]);
+      }
+      return acc;
+    },
+    [] as [T, T][],
+  );
 }
 
 main(process.argv.slice(2));
