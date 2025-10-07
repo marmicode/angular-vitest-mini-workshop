@@ -26,7 +26,7 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm nx run-many -t build test lint
+      - run: pnpm nx affected -t build test lint
       - run: pnpm nx fix-ci
         if: always()
 
@@ -50,7 +50,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Playwright browsers install
         run: pnpm playwright install --with-deps
-      - run: pnpm nx run-many -t testronaut --parallel=1 --pass-with-no-tests
+      - run: pnpm nx affected -t testronaut --parallel=1 --pass-with-no-tests
       - uses: actions/upload-artifact@v4
         if: always()
         with:
