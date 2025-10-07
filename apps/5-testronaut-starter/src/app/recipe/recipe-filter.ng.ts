@@ -45,7 +45,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
 })
 export class RecipeFilter {
-  filterFormGroup = new FormGroup({
+  protected filterFormGroup = new FormGroup({
     keywords: new FormControl(),
     maxIngredientCount: new FormControl(),
     maxStepCount: new FormControl(),

@@ -37,7 +37,7 @@ import { createRecipeFilterCriteria } from './recipe-filter-criteria';
   ],
 })
 export class RecipeFilter {
-  filterFormGroup = new FormGroup({
+  protected filterFormGroup = new FormGroup({
     keywords: new FormControl(),
     maxIngredientCount: new FormControl(),
     maxStepCount: new FormControl(),
