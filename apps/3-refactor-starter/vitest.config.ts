@@ -24,7 +24,7 @@ export default mergeConfig(
       reporters: ['default'],
       coverage: {
         reportsDirectory: '../../coverage/apps/whiskmate',
-        provider: 'v8',
+        provider: 'istanbul',
       },
       watch: false,
       pool: 'threads',

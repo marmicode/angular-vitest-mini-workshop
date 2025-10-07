@@ -6,7 +6,7 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/tests/whiskmate',
   optimizeDeps: { include: ['tslib'] },
   plugins: [
-    analog()
+    analog({ jit: false })
       /**
        * Disable angularVitestPlugin because it includes @angular/cdk and its side-effect
        * is that we end up with two instances of the module. This can cause the following error
