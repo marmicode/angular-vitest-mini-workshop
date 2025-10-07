@@ -5,14 +5,14 @@ import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
-    const { getRecipeNames } = createComponent();
+    const { getRecipeNames } = await createComponent();
 
-    expect(await getRecipeNames()).toEqual(
+    expect(getRecipeNames()).toEqual(
       expect.arrayContaining(['Burger', 'Salad']),
     );
   });
 
-  function createComponent() {
+  async function createComponent() {
     TestBed.configureTestingModule({
       providers: [RecipeSearch, provideHttpClient()],
     });
@@ -21,9 +21,10 @@ describe(RecipeSearch.name, () => {
 
     component.ngOnInit();
 
+    await whenAppStable();
+
     return {
-      async getRecipeNames() {
-        await whenAppStable();
+      getRecipeNames() {
         return component.recipes?.map((recipe) => recipe.name);
       },
     };

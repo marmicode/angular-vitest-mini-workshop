@@ -1,36 +1,45 @@
 import { TestBed } from '@angular/core/testing';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { RecipeSearch } from './recipe-search.ng';
 import {
   provideRecipeRepositoryFake,
   RecipeRepositoryFake,
 } from './recipe-repository.fake';
+import { RecipeSearch } from './recipe-search.ng';
 import { recipeMother } from './recipe.mother';
 
 describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
-    const { getRecipeNames } = await renderComponent();
+    const { getRecipeNameEls } = await renderComponent();
 
-    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
+    const els = getRecipeNameEls();
+    expect.soft(els).toHaveLength(2);
+    expect.soft(els[0]).toHaveTextContent('Burger');
+    expect.soft(els[1]).toHaveTextContent('Salad');
   });
 
   it('filters recipes by keywords', async () => {
-    const { getRecipeNames, setKeywords } = await renderComponent();
+    const { getRecipeNameEls, setKeywords } = await renderComponent();
 
     await setKeywords('Burg');
 
-    expect(getRecipeNames()).toEqual(['Burger']);
+    const els = getRecipeNameEls();
+    expect.soft(els).toHaveLength(1);
+    expect.soft(els[0]).toHaveTextContent('Burger');
   });
 
   it('resets filters when clicking on the reset button', async () => {
-    const { getRecipeNames, setKeywords, clickReset } = await renderComponent();
+    const { getRecipeNameEls, setKeywords, clickReset } =
+      await renderComponent();
 
     await setKeywords('Burg');
 
     await clickReset();
 
-    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
+    const els = getRecipeNameEls();
+    expect.soft(els).toHaveLength(2);
+    expect.soft(els[0]).toHaveTextContent('Burger');
+    expect.soft(els[1]).toHaveTextContent('Salad');
   });
 
   async function renderComponent() {
@@ -48,14 +57,16 @@ describe(RecipeSearch.name, () => {
     await fixture.whenStable();
 
     return {
-      getRecipeNames() {
-        return screen.queryAllByRole('heading').map((el) => el.textContent);
+      getRecipeNameEls() {
+        return screen.queryAllByRole('heading');
       },
       async setKeywords(keywords: string) {
         await userEvent.type(screen.getByLabelText('Keywords'), keywords);
+        await fixture.whenStable();
       },
       async clickReset() {
         await userEvent.click(screen.getByRole('button', { name: 'RESET' }));
+        await fixture.whenStable();
       },
     };
   }

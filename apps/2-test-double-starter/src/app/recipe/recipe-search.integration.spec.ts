@@ -13,11 +13,9 @@ describe(RecipeSearch.name, () => {
   });
 
   async function renderComponent() {
-    TestBed.configureTestingModule({
-      providers: [provideHttpClient()],
-    });
-    const fixture = TestBed.createComponent(RecipeSearch);
+    TestBed.configureTestingModule({ providers: [provideHttpClient()] });
 
+    const fixture = TestBed.createComponent(RecipeSearch);
     await fixture.whenStable();
 
     return {

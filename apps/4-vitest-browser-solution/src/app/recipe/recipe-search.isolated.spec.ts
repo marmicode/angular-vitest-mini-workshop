@@ -12,20 +12,20 @@ import { recipeMother } from './recipe.mother';
 
 describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
-    const { getRecipeNames } = createComponent();
+    const { getRecipeNames } = await createComponent();
 
-    expect(await getRecipeNames()).toEqual(['Burger', 'Salad']);
+    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
   it('filters recipes', async () => {
-    const { getRecipeNames, setKeywords } = createComponent();
+    const { getRecipeNames, setKeywords } = await createComponent();
 
-    setKeywords('Burger');
+    await setKeywords('Burg');
 
-    expect(await getRecipeNames()).toEqual(['Burger']);
+    expect(getRecipeNames()).toEqual(['Burger']);
   });
 
-  function createComponent() {
+  async function createComponent() {
     TestBed.configureTestingModule({
       providers: [RecipeSearch, provideRecipeRepositoryFake()],
     });
@@ -44,15 +44,17 @@ describe(RecipeSearch.name, () => {
       recipes: ResourceRef<Recipe[]>;
     };
 
+    await whenAppStable();
+
     return {
-      async getRecipeNames() {
-        await whenAppStable();
+      getRecipeNames() {
         return component.recipes.hasValue()
           ? component.recipes.value().map((recipe) => recipe.name)
           : null;
       },
-      setKeywords(keywords: string) {
+      async setKeywords(keywords: string) {
         component.filter.set({ keywords });
+        await whenAppStable();
       },
     };
   }

@@ -9,7 +9,6 @@ describe(RecipeSearch.name, () => {
     TestBed.configureTestingModule({ providers: [provideHttpClient()] });
 
     const fixture = TestBed.createComponent(RecipeSearch);
-
     await fixture.whenStable();
 
     return {

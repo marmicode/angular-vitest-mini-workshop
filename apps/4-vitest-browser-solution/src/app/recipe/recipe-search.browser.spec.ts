@@ -11,7 +11,10 @@ describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
     const { getRecipeNames } = await renderComponent();
 
-    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
+    const els = getRecipeNames();
+    await expect.poll(() => els.all()).toHaveLength(2);
+    await expect.element(els.nth(0)).toHaveTextContent('Burger');
+    await expect.element(els.nth(1)).toHaveTextContent('Salad');
   });
 
   it('filters recipes by keywords', async () => {
@@ -19,7 +22,9 @@ describe(RecipeSearch.name, () => {
 
     await setKeywords('Burg');
 
-    expect(getRecipeNames()).toEqual(['Burger']);
+    const els = getRecipeNames();
+    await expect.poll(() => els.all()).toHaveLength(1);
+    await expect.element(els.first()).toHaveTextContent('Burger');
   });
 
   it('resets filters when clicking on the reset button', async () => {
@@ -29,7 +34,10 @@ describe(RecipeSearch.name, () => {
 
     await clickReset();
 
-    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
+    const els = getRecipeNames();
+    await expect.poll(() => els.all()).toHaveLength(2);
+    await expect.element(els.nth(0)).toHaveTextContent('Burger');
+    await expect.element(els.nth(1)).toHaveTextContent('Salad');
   });
 
   async function renderComponent() {
@@ -42,16 +50,11 @@ describe(RecipeSearch.name, () => {
       recipeMother.withBasicInfo('Salad').build(),
     ]);
 
-    const fixture = TestBed.createComponent(RecipeSearch);
-
-    await fixture.whenStable();
+    TestBed.createComponent(RecipeSearch);
 
     return {
       getRecipeNames() {
-        return page
-          .getByRole('heading')
-          .elements()
-          .map((el) => el.textContent);
+        return page.getByRole('heading');
       },
       async setKeywords(keywords: string) {
         await page.getByLabelText('Keywords').fill(keywords);

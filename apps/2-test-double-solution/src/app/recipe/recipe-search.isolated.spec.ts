@@ -1,9 +1,8 @@
+import { TestBed } from '@angular/core/testing';
 import {
   provideRecipeRepositoryFake,
   RecipeRepositoryFake,
 } from './recipe-repository.fake';
-import { TestBed } from '@angular/core/testing';
-import { whenAppStable } from '../../testing/when-app-stable';
 import { RecipeSearch } from './recipe-search.ng';
 import { recipeMother } from './recipe.mother';
 
@@ -11,15 +10,15 @@ describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
     const { getRecipeNames } = createComponent();
 
-    expect(await getRecipeNames()).toEqual(['Burger', 'Salad']);
+    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
   it('filters recipes', async () => {
     const { getRecipeNames, setKeywords } = createComponent();
 
-    setKeywords('Burger');
+    setKeywords('Burg');
 
-    expect(await getRecipeNames()).toEqual(['Burger']);
+    expect(getRecipeNames()).toEqual(['Burger']);
   });
 
   function createComponent() {
@@ -37,8 +36,7 @@ describe(RecipeSearch.name, () => {
     component.ngOnInit();
 
     return {
-      async getRecipeNames() {
-        await whenAppStable();
+      getRecipeNames() {
         return component.recipes?.hasValue
           ? component.recipes.value.map((recipe) => recipe.name)
           : null;
