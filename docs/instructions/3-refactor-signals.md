@@ -18,16 +18,16 @@ In this exercise, you'll modernize the `RecipeSearch` component by refactoring f
 
 ### 📝 Steps
 
-#### 1. Checkout the new implementation of `RecipeSearch`
-
-```sh
-pnpm cook checkout-impl
-```
-
-#### 2. Run tests
+#### 1. Run tests
 
 ```sh
 pnpm test
+```
+
+#### 2. Checkout the new implementation of `RecipeSearch`
+
+```sh
+pnpm cook checkout-impl
 ```
 
 #### 3. Analyze which tests are failing

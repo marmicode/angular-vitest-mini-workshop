@@ -18,30 +18,50 @@ In this exercise, you'll learn to use test doubles _(Fakes to be more specific)_
 
 ### 📝 Steps
 
-#### 1. Replace the `RecipeRepository` with a fake repository
+#### 1. Run tests
+
+```sh
+pnpm test
+```
+
+#### 2. Open `src/app/recipe/recipe-search.integration.spec.ts`
+
+#### 3. Replace the `RecipeRepository` with a fake repository
 
 ```diff
 - TestBed.configureTestingModule({ providers: [provideHttpClient()] });
 + TestBed.configureTestingModule({ providers: [provideRecipeRepositoryFake()] });
 ```
 
-#### 2. Configure the fake repository
+#### 4. Configure the fake repository
 
 ```ts
 TestBed.inject(RecipeRepositoryFake).setRecipes(...);
 ```
 
-#### 3. Update test helper functions
+Cf. [📖 Appendices](#-appendices)
 
-#### 4. Run tests
+## 🎯 Goal #2: `RecipeSearch` filters recipes by keywords
+
+Add a test that checks that `RecipeSearch` filters recipes by keywords when the user types keywords in an input labeled "Keywords".
+
+### 📝 Steps
+
+#### 1. Run tests
 
 ```sh
 pnpm test
 ```
 
-## 🎯 Goal #2: `RecipeSearch` filters recipes by keywords
+#### 2. Add a test that checks that `RecipeSearch` filters recipes by keywords when the user types keywords in an input labeled "Keywords".
 
-Add a test that checks that `RecipeSearch` filters recipes by keywords when the user types keywords in an input labeled "Keywords".
+Cf. [📖 Appendices](#-appendices)
+
+#### 3. Checkout the implementation if you went with the TDD approach:
+
+```sh
+pnpm cook checkout-impl
+```
 
 ## 📖 Appendices
 
