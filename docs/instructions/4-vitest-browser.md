@@ -18,9 +18,9 @@ In this exercise, you'll learn to use Vitest's browser mode for testing componen
 
 ### 📝 Steps
 
-#### 1. Rename test from `recipe-search.ng.integration.spec.ts` to `recipe-search.ng.browser.spec.ts`
+#### 1. Rename test from `recipe-search.integration.spec.ts` to `recipe-search.browser.spec.ts`
 
-#### 2. Run tests:
+#### 2. Run tests
 
 ```sh
 pnpm test
@@ -34,7 +34,17 @@ import { page } from '@vitest/browser/context';
 await page.getByLabelText('Keywords').fill(keywords);
 ```
 
+#### 4. Figure out why the tests are failing
+
 ## 📖 Appendices
+
+### Asserting with Vitest Browser
+
+```ts
+const els = page.getByRole('...');
+await expect.poll(() => els.all()).toHaveLength(42);
+await expect.element(els.nth(30)).toHaveTextContent('...');
+```
 
 ### Visual Debugging
 

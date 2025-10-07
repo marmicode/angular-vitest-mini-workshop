@@ -36,8 +36,8 @@ pnpm test
 
 ```ts
 it('...', async () => {
-    await renderComponent();
-})
+  await renderComponent();
+});
 ```
 
 #### 4. Query DOM and check that a burger and a pizza are displayed
@@ -56,7 +56,7 @@ The `RecipeSearch` component should display a list of recipes fetched from a rem
 
 ### 📝 Steps
 
-#### 1. Run tests:
+#### 1. Run tests
 
 ```sh
 pnpm test
@@ -67,7 +67,6 @@ pnpm test
 Wait for the `recipes` property to contain a burger and a pizza.
 
 Cf. [📖 Appendices](#-appendices)
-
 
 #### 3. Checkout the implementation if you went with the TDD approach:
 

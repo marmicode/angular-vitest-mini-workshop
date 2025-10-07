@@ -24,7 +24,7 @@ In this exercise, you'll modernize the `RecipeSearch` component by refactoring f
 pnpm cook checkout-impl
 ```
 
-#### 2. Run tests:
+#### 2. Run tests
 
 ```sh
 pnpm test
