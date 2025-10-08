@@ -66,6 +66,10 @@ const config: Config = {
           position: 'left',
           label: 'Instructions',
         },
+        {
+          label: '✅ Video Course (60% off until tomorrow)',
+          href: 'https://courses.marmicode.io/courses/pragmatic-angular-testing?utm_source=angular-vitest-mini-workshop&utm_medium=navbar&coupon=vitestdelicieux',
+        },
       ],
     },
 
@@ -84,8 +88,8 @@ const config: Config = {
           title: 'Learn',
           items: [
             {
-              label: '🎥 Pragmatic Angular Testing Course (50% off)',
-              href: 'https://courses.marmicode.io/courses/pragmatic-angular-testing?utm_source=cookbook&utm_medium=footer',
+              label: '📺 Pragmatic Angular Testing Course (60% off)',
+              href: 'https://courses.marmicode.io/courses/pragmatic-angular-testing?utm_source=cookbook&utm_medium=footer&coupon=vitestdelicieux',
             },
             {
               label: '👨🏻‍🏫 Workshops',

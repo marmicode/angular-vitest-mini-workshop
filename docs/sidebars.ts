@@ -8,6 +8,28 @@ const sidebars: SidebarsConfig = {
       label: '📝 Feedback Form',
       href: 'https://forms.gle/Gk5vybAj7VpYno1eA',
     },
+    {
+      type: 'link',
+      label: '👨🏻‍🏫 Upcoming Workshops',
+      href: 'https://marmicode.io/workshops',
+    },
+    {
+      type: 'category',
+      collapsed: false,
+      label: '🎁 Gifts',
+      items: [
+        {
+          type: 'link',
+          label: '✅ Video Course (60% off)',
+          href: 'https://courses.marmicode.io/courses/pragmatic-angular-testing?utm_source=angular-vitest-mini-workshop&utm_medium=sidenav&coupon=vitestdelicieux',
+        },
+        {
+          type: 'link',
+          label: '🦘 WallabyJS (15% off)',
+          href: 'https://wallabyjs.com/store/personal/?discount=Special_YOUNES15_UYC675U#buy-wallaby',
+        },
+      ],
+    },
   ],
 };
 
