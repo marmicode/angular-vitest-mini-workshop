@@ -6,7 +6,7 @@
   "scripts": {
     "cook": "node --experimental-strip-types tools/cook/main.ts",
     "postinstall": "pnpm exec playwright install --with-deps",
-    "test": "nx test --watch",
+    "test": "nx test --tui false --watch",
     "test:debug": "nx test --configuration=debug",
     "testronaut": "nx testronaut",
     "verify": "nx run-many -t test,testronaut --parallel=1 --pass-with-no-tests"
