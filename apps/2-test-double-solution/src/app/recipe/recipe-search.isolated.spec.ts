@@ -17,7 +17,7 @@ describe(RecipeSearch.name, () => {
   it('filters recipes', async () => {
     const { getRecipeNames, setKeywords } = await createComponent();
 
-    setKeywords('Burg');
+    await setKeywords('Burg');
 
     expect(getRecipeNames()).toEqual(['Burger']);
   });
@@ -44,8 +44,9 @@ describe(RecipeSearch.name, () => {
           ? component.recipes.value.map((recipe) => recipe.name)
           : null;
       },
-      setKeywords(keywords: string) {
+      async setKeywords(keywords: string) {
         component.filter$.next({ keywords });
+        await whenAppStable();
       },
     };
   }
